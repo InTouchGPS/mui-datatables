@@ -229,7 +229,7 @@ class TableToolbar extends React.Component {
     return (
       <Toolbar className={classes.root} role={'toolbar'} aria-label={'Table Toolbar'}>
         
-        <div className={classes.actions}>
+        <div className={classes.left}>
           {options.search && (
             <Tooltip title={search} disableFocusListener>
               <IconButton
@@ -322,7 +322,7 @@ class TableToolbar extends React.Component {
           {options.customToolbar && options.customToolbar()}
         </div>
       
-        <div className={classes.left}>
+        <div className={classes.actions}>
           {showSearch === true ? (
             options.customSearchRender ? (
               options.customSearchRender(searchText, this.handleSearch, this.hideSearch, options)
@@ -344,7 +344,7 @@ class TableToolbar extends React.Component {
             </div>
           )}
         </div>
-        
+
       </Toolbar>
     );
   }
