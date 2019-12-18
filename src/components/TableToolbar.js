@@ -228,28 +228,7 @@ class TableToolbar extends React.Component {
 
     return (
       <Toolbar className={classes.root} role={'toolbar'} aria-label={'Table Toolbar'}>
-        <div className={classes.left}>
-          {showSearch === true ? (
-            options.customSearchRender ? (
-              options.customSearchRender(searchText, this.handleSearch, this.hideSearch, options)
-            ) : (
-              <TableSearch
-                searchText={searchText}
-                onSearch={this.handleSearch}
-                onHide={this.hideSearch}
-                options={options}
-              />
-            )
-          ) : typeof title !== 'string' ? (
-            title
-          ) : (
-            <div className={classes.titleRoot} aria-hidden={'true'}>
-              <Typography variant="h6" className={classes.titleText}>
-                {title}
-              </Typography>
-            </div>
-          )}
-        </div>
+        
         <div className={classes.actions}>
           {options.search && (
             <Tooltip title={search} disableFocusListener>
@@ -342,6 +321,30 @@ class TableToolbar extends React.Component {
           )}
           {options.customToolbar && options.customToolbar()}
         </div>
+      
+        <div className={classes.left}>
+          {showSearch === true ? (
+            options.customSearchRender ? (
+              options.customSearchRender(searchText, this.handleSearch, this.hideSearch, options)
+            ) : (
+              <TableSearch
+                searchText={searchText}
+                onSearch={this.handleSearch}
+                onHide={this.hideSearch}
+                options={options}
+              />
+            )
+          ) : typeof title !== 'string' ? (
+            title
+          ) : (
+            <div className={classes.titleRoot} aria-hidden={'true'}>
+              <Typography variant="h6" className={classes.titleText}>
+                {title}
+              </Typography>
+            </div>
+          )}
+        </div>
+        
       </Toolbar>
     );
   }
