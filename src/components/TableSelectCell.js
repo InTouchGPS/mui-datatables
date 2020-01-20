@@ -6,6 +6,7 @@ import TableCell from '@material-ui/core/TableCell';
 import IconButton from '@material-ui/core/IconButton';
 import { withStyles } from '@material-ui/core/styles';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
+import clsx from 'clsx';
 
 const defaultSelectCellStyles = theme => ({
   root: {},
@@ -41,9 +42,35 @@ const defaultSelectCellStyles = theme => ({
     backgroundColor: theme.palette.background.paper,
   },
   expandDisabled: {},
-  checkboxRoot: {},
-  checked: {},
-  disabled: {},
+  checkboxDisabled: {
+    '& span': {
+			backgroundColor: '#ddd'
+		}
+  },
+  checkboxIcon: {
+    borderRadius: 1,
+		width: 18,
+		height: 18,
+		border: '2px solid #BEBEBE'
+  },
+  checkboxCheckedIcon: {
+    backgroundColor: '#000000',
+		backgroundImage: 'linear-gradient(180deg,hsla(0,0%,100%,.1),hsla(0,0%,100%,0))',
+		border: '2px solid #000000',
+		'&:before': {
+		  display: 'block',
+		  width: 18,
+		  height: 18,
+		  backgroundImage:
+			"url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='2 3 15 15'%3E%3Cpath" +
+			" fill-rule='evenodd' clip-rule='evenodd' d='M12 5c-.28 0-.53.11-.71.29L7 9.59l-2.29-2.3a1.003 " +
+			"1.003 0 00-1.42 1.42l3 3c.18.18.43.29.71.29s.53-.11.71-.29l5-5A1.003 1.003 0 0012 5z' fill='%23fff'/%3E%3C/svg%3E\")",
+		  content: '""',
+		},
+		'input:hover ~ &': {
+		  backgroundColor: '#106ba3',
+		},
+  },
 });
 
 class TableSelectCell extends React.Component {
@@ -129,10 +156,11 @@ class TableSelectCell extends React.Component {
       return (
         <Checkbox
           classes={{
-            root: classes.checkboxRoot,
-            checked: classes.checked,
-            disabled: classes.disabled,
+            disabled: classes.checkboxDisabled
           }}
+          disableRipple
+					icon={<span className={classes.checkboxIcon} />}
+					checkedIcon={<span className={clsx(classes.checkboxIcon, classes.checkboxCheckedIcon)} />}
           color="primary"
           disabled={!isRowSelectable}
           {...otherProps}
