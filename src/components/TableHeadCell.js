@@ -135,17 +135,6 @@ class TableHeadCell extends React.Component {
             onClick={this.handleSortClick}
             className={classes.toolButton}
             tabIndex={0}>
-            <Tooltip
-              title={
-                options.textLabels.body.columnHeaderTooltip
-                  ? options.textLabels.body.columnHeaderTooltip(column)
-                  : options.textLabels.body.toolTip
-              }
-              placement={'bottom-start'}
-              classes={{
-                tooltip: classes.tooltip,
-              }}
-              classes={{ popper: classes.mypopper }}>
               <div className={classes.sortAction}>
                 <div
                   className={classNames({
@@ -158,7 +147,6 @@ class TableHeadCell extends React.Component {
                   <TableSortLabel {...sortLabelProps} />
                 </div>
               </div>
-            </Tooltip>
             {hint && (
               <Tooltip title={hint}>
                 <HelpIcon
